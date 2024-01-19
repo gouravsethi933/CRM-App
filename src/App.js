@@ -14,11 +14,19 @@ import Dashboard from "./components/Dashboard";
 
 // ---------------------------------------------------------------------------------
 function App() {
+
+ const isAuthenticated = localStorage.getItem('login')
   return (
     <Router>
       <Routes>
+      {isAuthenticated &&
+        <Route
+         path="/"
+           element={
+         <Navigate to="/dashboard" replace />
+      }
+        />}
         <Route path="/" element={<LoginPage />} />
-        {/* <Route path="/user" element={<PrivateRoute Component={Dashboard}/>} /> */}
         <Route
           path="/dashboard"
           element={<PrivateRoute Component={Dashboard} />}

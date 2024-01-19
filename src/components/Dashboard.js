@@ -3,6 +3,7 @@ import "./Dashboard.css";
 import { useDispatch } from "react-redux";
 import { setAuth } from "../slices/authSlice";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = ({ products, deleteProduct, addProduct, updateProduct }) => {
   //------------------------------------state-----------------------------------
@@ -16,7 +17,7 @@ const Dashboard = ({ products, deleteProduct, addProduct, updateProduct }) => {
   });
 
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   //-------------------------------function---------------------------------------------------
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -58,6 +59,7 @@ const Dashboard = ({ products, deleteProduct, addProduct, updateProduct }) => {
   const handleLogout = () => {
     dispatch(setAuth(false));
     localStorage.removeItem("login");
+    navigate("/");
   };
 
   //-------------------------------jsx---------------------------------------------------
